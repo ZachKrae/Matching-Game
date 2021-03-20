@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Matching Game</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+
+        <script>
+            clickCount = 0;
+            randoList = ["linc.png", "linc.png", "wash.png", "wash.png", "jacks.png", "jacks.png", "grant.png", "grant.png", "jeffs.png", "jeffs.png", "taft.png", "taft.png", "teddy.png", "teddy.png", "eisen.png", "eisen.png"]
+            randoList.sort(function(a, b) {
+                return 0.5 - Math.random();
+            });             
+            pickedList = [];
+
+            function addBoxes() {
+                for (i = 0; i < 16; i++) {
+                    square = "<img class='img-square' id = '" + i + "' src='grey.png' onclick='revealBox(" + i + ")'>"
+                    document.getElementById("grid").innerHTML += square;
+                }
+            }
+
+            function revealBox(boxid) {
+                console.log("box " + boxid + " selected.");
+                document.getElementById(boxid).src = randoList[boxid];
+                clickCount += 1;
+
+                pickedList.push(boxid);
+
+                if (pickedList.length === 2) {
+                    if(randoList[pickedList[0]] === randoList[pickedList[1]]) {
+                        console.log("correct!");
+                        pickedList = [];
+                    }
+                    else {
+                        setTimeout(compare, 500);
+                    }
+                    
+                }
+
+                console.log(clickCount, pickedList);
+            }
+
+            function compare() {
+                document.getElementById(pickedList[0]).src = "grey.png";
+                document.getElementById(pickedList[1]).src = "grey.png";
+                pickedList = [];
+            }
+        </script>
+        <style>
+            .img-square {
+                width: 220px;
+                margin: 5px;
+            }
+            .squarecontainer {
+            width: 80%;
+            /* background-color: grey; */
+            height: 100vh;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0px;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="grid" class="squarecontainer">
+
+        </div>
+    </body>
+    <script>
+        addBoxes();  
+    </script>
+</html>
