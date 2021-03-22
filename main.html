@@ -8,69 +8,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
 
-        <script>
-            clickCount = 0;
-            randoList = ["linc.png", "linc.png", "wash.png", "wash.png", "jacks.png", "jacks.png", "grant.png", "grant.png", "jeffs.png", "jeffs.png", "taft.png", "taft.png", "teddy.png", "teddy.png", "eisen.png", "eisen.png"]
-            randoList.sort(function(a, b) {
-                return 0.5 - Math.random();
-            });             
-            pickedList = [];
+        <link rel="stylesheet" href="mystyle.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Spectral+SC:wght@200&display=swap" rel="stylesheet">
 
-            function addBoxes() {
-                for (i = 0; i < 16; i++) {
-                    square = "<img class='img-square' id = '" + i + "' src='grey.png' onclick='revealBox(" + i + ")'>"
-                    document.getElementById("grid").innerHTML += square;
-                }
-            }
-
-            function revealBox(boxid) {
-                console.log("box " + boxid + " selected.");
-                document.getElementById(boxid).src = randoList[boxid];
-                clickCount += 1;
-
-                pickedList.push(boxid);
-
-                if (pickedList.length === 2) {
-                    if(randoList[pickedList[0]] === randoList[pickedList[1]]) {
-                        console.log("correct!");
-                        pickedList = [];
-                    }
-                    else {
-                        setTimeout(compare, 500);
-                    }
-                    
-                }
-
-                console.log(clickCount, pickedList);
-            }
-
-            function compare() {
-                document.getElementById(pickedList[0]).src = "grey.png";
-                document.getElementById(pickedList[1]).src = "grey.png";
-                pickedList = [];
-            }
-        </script>
-        <style>
-            .img-square {
-                width: 220px;
-                margin: 5px;
-            }
-            .squarecontainer {
-            width: 80%;
-            /* background-color: grey; */
-            height: 100vh;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0px;
-        }
-        </style>
+        <script src="script.js"></script>
     </head>
     <body>
-        <div id="grid" class="squarecontainer">
-
+        <div class="grid-container">
+            <div>
+                <button type="button" onclick="resetGame()">PLAY AGAIN</button>
+            </div>
+            <div>
+                <div id="grid" class="squarecontainer"></div>
+                <h1 class="info" id="info"></h1>
+            </div>
         </div>
     </body>
-    <script>
-        addBoxes();  
+    <script> 
+        addBoxes();
     </script>
 </html>

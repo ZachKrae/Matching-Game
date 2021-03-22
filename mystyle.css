@@ -1,0 +1,39 @@
+button {
+  width: 8vw;
+  height: 5vh;
+  background-color: mediumspringgreen;
+  border-style: none;
+  color: whitesmoke;
+}
+
+button:hover {
+  border-style: groove;
+  opacity: 75%;
+  cursor: pointer;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 8vw 89vw;
+}
+
+.img-square {
+  width: 125px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.info {
+  height: 50px;
+  padding-top: 10px;
+  text-align: center;
+  font-family: "Spectral SC", serif;
+}
+
+.squarecontainer {
+  width: 45vw;
+  height: 80vh;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px;
+}
