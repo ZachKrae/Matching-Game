@@ -40,5 +40,6 @@ function compare() {
 
 function resetGame() {
     document.getElementById("grid").innerHTML = "";
+    document.getElementById("info").innerHTML = "";
     addBoxes();
 }
