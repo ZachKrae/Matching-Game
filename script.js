@@ -28,7 +28,8 @@ function revealBox(boxid) {
             document.getElementById("info").innerHTML = "NO MATCH"
             setTimeout(compare, 500);
         }
-    }
+        setTimeout(() => resetInfoBox(), 500);
+              }
     console.log(clickCount, pickedList);
 }
 
@@ -42,4 +43,8 @@ function resetGame() {
     document.getElementById("grid").innerHTML = "";
     document.getElementById("info").innerHTML = "";
     addBoxes();
+}
+
+function resetInfoBox() {
+    document.getElementById("info").innerHTML = ""
 }
