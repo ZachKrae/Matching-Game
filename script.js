@@ -5,6 +5,7 @@ randoList.sort(function(a, b) {
     return 0.5 - Math.random();
 });
 pickedList = [];
+pickedBoxes = [];
 
 function addBoxes() {
     for (i = 0; i < 16; i++) {
@@ -18,14 +19,21 @@ function revealBox(boxid) {
     clickCount += 1;
 
     pickedList.push(boxid);
+    pickedBoxes.push(boxid);
 
     if (pickedList.length === 2) {
-        if(randoList[pickedList[0]] === randoList[pickedList[1]]) {
-            document.getElementById("info").innerHTML = "MATCH"
+        if (randoList[pickedList[0]] === randoList[pickedList[1]] && pickedBoxes[0] != pickedBoxes[1]) {
+            document.getElementById("info").innerHTML = "MATCH";
             pickedList = [];
+            pickedBoxes= [];
+        } else if (randoList[pickedList[0]] === randoList[pickedList[1]] && pickedBoxes[0] == pickedBoxes[1]) {
+            document.getElementById("info").innerHTML = "YOU CLICKED THE SAME PICTURE!!!";
+            pickedBoxes= [];
+            setTimeout(compare, 500);
         }
         else {
-            document.getElementById("info").innerHTML = "NO MATCH"
+            document.getElementById("info").innerHTML = "NO MATCH";
+            pickedBoxes= [];
             setTimeout(compare, 500);
         }
         setTimeout(() => resetInfoBox(), 500);
