@@ -1,4 +1,5 @@
 clickCount = 0;
+correctMatches = 0;
 randoList = ["linc.png", "linc.png", "wash.png", "wash.png", "jacks.png", "jacks.png", "grant.png", 
 "grant.png", "jeffs.png", "jeffs.png", "taft.png", "taft.png", "teddy.png", "teddy.png", "eisen.png", "eisen.png"]
 randoList.sort(function(a, b) {
@@ -23,7 +24,12 @@ function revealBox(boxid) {
 
     if (pickedList.length === 2) {
         if (randoList[pickedList[0]] === randoList[pickedList[1]] && pickedBoxes[0] != pickedBoxes[1]) {
-            document.getElementById("info").innerHTML = "MATCH";
+            correctMatches++;
+            if (correctMatches == 8) {
+                document.getElementById("info").innerHTML = "WIN!";
+            } else {
+                document.getElementById("info").innerHTML = "MATCH";
+            }
             pickedList = [];
             pickedBoxes= [];
         } else if (randoList[pickedList[0]] === randoList[pickedList[1]] && pickedBoxes[0] == pickedBoxes[1]) {
@@ -36,8 +42,10 @@ function revealBox(boxid) {
             pickedBoxes= [];
             setTimeout(compare, 500);
         }
-        setTimeout(() => resetInfoBox(), 500);
-              }
+        if (correctMatches != 8) {
+            setTimeout(() => resetInfoBox(), 500);
+        }
+    }
     console.log(clickCount, pickedList);
 }
 
