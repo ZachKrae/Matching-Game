@@ -1,5 +1,5 @@
 clickCount = 0;
-correctMatches = 0;
+8
 randoList = ["linc.png", "linc.png", "wash.png", "wash.png", "jacks.png", "jacks.png", "grant.png", 
 "grant.png", "jeffs.png", "jeffs.png", "taft.png", "taft.png", "teddy.png", "teddy.png", "eisen.png", "eisen.png"]
 randoList.sort(function(a, b) {
@@ -26,27 +26,24 @@ function revealBox(boxid) {
         if (randoList[pickedList[0]] === randoList[pickedList[1]] && pickedBoxes[0] != pickedBoxes[1]) {
             correctMatches++;
             if (correctMatches == 8) {
-                document.getElementById("info").innerHTML = "WIN!";
+                document.getElementById("info").innerHTML = "YOU WIN!";
             } else {
                 document.getElementById("info").innerHTML = "MATCH";
             }
             pickedList = [];
-            pickedBoxes= [];
         } else if (randoList[pickedList[0]] === randoList[pickedList[1]] && pickedBoxes[0] == pickedBoxes[1]) {
             document.getElementById("info").innerHTML = "YOU CLICKED THE SAME PICTURE!!!";
-            pickedBoxes= [];
             setTimeout(compare, 500);
         }
         else {
             document.getElementById("info").innerHTML = "NO MATCH";
-            pickedBoxes= [];
             setTimeout(compare, 500);
         }
         if (correctMatches != 8) {
             setTimeout(() => resetInfoBox(), 500);
         }
+        pickedBoxes= [];
     }
-    console.log(clickCount, pickedList);
 }
 
 function compare() {
@@ -58,7 +55,11 @@ function compare() {
 function resetGame() {
     document.getElementById("grid").innerHTML = "";
     document.getElementById("info").innerHTML = "";
+    randoList.sort(function(a, b) {
+        return 0.5 - Math.random();
+    });
     addBoxes();
+    correctMatches = 0;
 }
 
 function resetInfoBox() {
